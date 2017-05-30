@@ -25,7 +25,7 @@ class FieldDefn
 
     if !@default_value.nil?
       if data_type == :datetime || data_type == :date
-        @default_value = (Time.parse(@default_value).to_i * 1000).to_s.concat("L")
+        @default_value = (ActiveSupport::TimeZone.new('Pacific Time (US & Canada)').parse(@default_value).to_i * 1000).to_s.concat("L")
       end
     end
 
